@@ -22,8 +22,6 @@ const Tasks = () => {
                         </Task>)
                 }
             </div>
-
-            {/* <button onClick={handleTaskComplete} className='task-complite-btn'>Task Complite</button> */}
         </section>
     );
 };

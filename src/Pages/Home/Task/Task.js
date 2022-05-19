@@ -18,7 +18,7 @@ const Task = ({ task }) => {
         const proceed = window.confirm('Are you sure to delete?');
 
         if (proceed) {
-            const url = `http://localhost:5000/task/${id}`
+            const url = `https://infinite-ridge-47501.herokuapp.com/task/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

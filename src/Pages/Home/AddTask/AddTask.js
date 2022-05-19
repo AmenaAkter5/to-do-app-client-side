@@ -1,20 +1,26 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
 import './AddTask.css';
 
 
 const AddTask = () => {
 
+    const [user] = useAuthState(auth);
+
+    // handle form submit
     const handleTaskForm = event => {
 
         event.preventDefault();
+        const email = user.email;
         const name = event.target.name.value;
         const description = event.target.description.value;
 
-        const task = { name, description };
-        // console.log(task)
+        const task = { name, description, email };
 
-        fetch(' http://localhost:5000/tasks', {
+
+        fetch(' https://infinite-ridge-47501.herokuapp.com/tasks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -23,10 +29,6 @@ const AddTask = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
-
-                // using toast
-                // toast('Booking is Successful')
 
                 // task added success হলে
                 if (data.insertedId) {
